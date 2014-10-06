@@ -1,5 +1,5 @@
 
-#include "demo.h"
+#include "../include/demo.h"
 using namespace std;
 
 bool MutuallyPrime(int m, int n)

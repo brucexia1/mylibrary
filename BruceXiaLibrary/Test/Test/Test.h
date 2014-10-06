@@ -4,13 +4,13 @@
 
 #include <gtest/gtest.h>
 
-#include "../src/baseStructures.h"
-#include "../src/xsSort.h"
-#include "../src/xsSearch.h"
-#include "../src/graph.h"
-#include "../src/tree.h"
-#include "../src/demo.h"
-#include "../src/testlibrary.h"
+#include "../../brucexialibrary/include/baseStructures.h"
+#include "../../brucexialibrary/include/xsSort.h"
+#include "../../brucexialibrary/include/xsSearch.h"
+#include "../../brucexialibrary/include/graph.h"
+#include "../../brucexialibrary/include/tree.h"
+#include "../../brucexialibrary/include/demo.h"
+#include "../../brucexialibrary/include/testlibrary.h"
 
 using namespace std;
 

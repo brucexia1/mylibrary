@@ -1,4 +1,4 @@
-#include "xsSort.h"
+#include "../include/xsSort.h"
 
 
 template<typename T>

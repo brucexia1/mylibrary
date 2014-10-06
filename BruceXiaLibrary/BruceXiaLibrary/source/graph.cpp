@@ -1,4 +1,4 @@
-#include "graph.h"
+#include "../include/graph.h"
 using namespace std;
 
 void MatToList(MGraph g, ALGraph *&G)	//将邻接矩阵g转换成邻接表G

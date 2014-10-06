@@ -13,63 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Test">
-      <UniqueIdentifier>{ef23d9f7-070a-469e-a649-e5636fe84747}</UniqueIdentifier>
+    <Filter Include="source">
+      <UniqueIdentifier>{65253b72-33cd-4106-9bc9-350a237fc534}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{beb806b1-6a27-4ee2-aac5-fef699621a2b}</UniqueIdentifier>
+    <Filter Include="include">
+      <UniqueIdentifier>{d6e8f8d3-b0f0-4aff-b528-265530b8698c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Test\Test.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="src\demo.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graph.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tree.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\testlibrary.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\xsSearch.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\xsSort.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
+    <ClInclude Include="include\baseStructures.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\demo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graph.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\testlibrary.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tree.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xsSearch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xsSort.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Test\Test.h">
-      <Filter>Test</Filter>
-    </ClInclude>
-    <ClInclude Include="src\demo.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\baseStructures.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\xsSearch.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\xsSort.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graph.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tree.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\testlibrary.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClCompile Include="source\demo.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graph.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\testlibrary.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tree.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\xsSearch.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\xsSort.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

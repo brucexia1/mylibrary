@@ -1,5 +1,5 @@
 #include <tchar.h>
-#include "Test\Test.h"
+#include "Test/Test.h"
 
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -10,4 +10,3 @@ int _tmain(int argc, _TCHAR* argv[])
 	testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
-

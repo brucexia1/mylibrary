@@ -1,4 +1,4 @@
-#include "xsSearch.h"
+#include "../include/xsSearch.h"
 
 
 //二分查找算法

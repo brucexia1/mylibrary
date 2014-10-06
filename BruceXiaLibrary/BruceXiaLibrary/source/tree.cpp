@@ -1,5 +1,6 @@
-#include "tree.h"
 #include <stdio.h>
+#include "../include/tree.h"
+
 
 using namespace std;
 
