@@ -54,6 +54,5 @@ BSTNode *CreateBST(std::vector<KeyType> &vec)
 
 void Del(BSTNode *p, BSTNode *&r)
 {
-	BSTNode *q;
 	return;
 }

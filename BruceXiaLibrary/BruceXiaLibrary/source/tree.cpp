@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <iostream>
 #include "../include/tree.h"
-
+#include "../include/com.h"
 
 using namespace std;
+
 
 //由二叉树的括号表示法str创建二叉链
 void CreateBTNode( BTNode *&b, char *str )
@@ -42,17 +44,17 @@ void CreateBTNode( BTNode *&b, char *str )
 }
 
 //返回data域为x的结点指针
-BTNode * FindNode( BTNode *b, ElemType x )
+BTNode * FindNode(BTNode *root, ElemType x)
 {
 	BTNode *p;
-	if ( b==NULL ) return NULL;
-	else if ( b->data==x ) return b;
+	if ( root== NULL) return NULL;
+	else if (root->data == x) return root;
 	else{
-		p = FindNode(b->lchild,x);
+		p = FindNode(root->lchild, x);
 		if(p!=NULL)
 			return p;
 		else
-			return FindNode(b->rchild,x);
+			return FindNode(root->rchild, x);
 	}
 }
 
@@ -81,15 +83,15 @@ int BTNodeDepth( BTNode *b )
 }
 
 //以括号表示法输出二叉树
-void DispBTNode( BTNode *b )
+void DispBTNode(BTNode *root)
 {
-	if( b!=NULL ){
-		printf("%c",b->data);
-		if( b->lchild!=NULL ||b->rchild!=NULL ){
+	if ( root!= NULL){
+		printf("%c", root->data);
+		if (root->lchild != NULL || root->rchild != NULL){
 			printf("(");
-			DispBTNode(b->lchild);
-			if( b->rchild!=NULL ) printf(",");
-			DispBTNode(b->rchild);
+			DispBTNode(root->lchild);
+			if (root->rchild != NULL) printf(",");
+			DispBTNode(root->rchild);
 			printf(")");
 		}
 	}
@@ -144,53 +146,55 @@ int BTWidth( BTNode *b )
 }
 
 //求二叉树b的结点个数
-int Nodes( BTNode *b )
+int Nodes(BTNode *root)
 {
 	int lnum,rnum;
-	if ( b==NULL )	return 0;
-	else if( b->lchild==NULL && b->rchild==NULL )	return 1;
+	if (root == NULL)	return 0;
+	else if (root->lchild == NULL && root->rchild == NULL)	return 1;
 	else{
-		lnum = Nodes(b->lchild);
-		rnum = Nodes(b->rchild);
+		lnum = Nodes(root->lchild);
+		rnum = Nodes(root->rchild);
 		return (lnum+rnum+1);
 	}
 }
 
 //求二叉树b的叶结点个数
-int LeafNodes( BTNode *b )
+int LeafNodes(BTNode *root)
 {
 	int lnum,rnum;
-	if ( b==NULL )	return 0;
-	else if( b->lchild==NULL && b->rchild==NULL )	return 1;
+	if (root == NULL)	return 0;
+	else if (root->lchild == NULL && root->rchild == NULL)	return 1;
 	else{
-		lnum = LeafNodes(b->lchild);
-		rnum = LeafNodes(b->rchild);
+		lnum = LeafNodes(root->lchild);
+		rnum = LeafNodes(root->rchild);
 		return (lnum+rnum);
 	}
 }
 
-void PreOrder( BTNode *b )		//先序遍历(递归)
+void PreOrderRecursion(BTNode *b)		//先序遍历(递归)
 {
 	if ( b!=NULL )
 	{
 		printf("%c ",b->data);
-		PreOrder(b->lchild);
-		PreOrder(b->rchild);
+		PreOrderRecursion(b->lchild);
+		PreOrderRecursion(b->rchild);
 	}
 }
-void PreOrder1( BTNode *b )	//先序遍历(非递归)
+void PreOrder( BTNode *b )	//先序遍历(非递归)
 {	//设立一个栈，先右孩子入栈后左孩子入栈
+	vector<ElemType> prenodes;
+	
 	BTNode *St[MAXSIZE],*p;
 	int top(-1);
 	if ( b!=NULL )
-	{	
+	{
 		top++;
 		St[top] = b;
 		while ( top>=0 )
 		{
 			p = St[top];
 			top--;
-			printf("%c ",p->data);
+			prenodes.push_back(p->data);
 			if ( p->rchild!=NULL )
 			{
 				top++;
@@ -202,21 +206,24 @@ void PreOrder1( BTNode *b )	//先序遍历(非递归)
 				St[top] = p->lchild;
 			}
 		}
-		printf("\n");
+
+		PrintVector<ElemType>(prenodes);
 	}
 }
 
-void InOrder( BTNode *b )	//中序遍历(递归)
+void InOrderRecursion(BTNode *b)	//中序遍历(递归)
 {
 	if ( b!=NULL )
 	{
-		InOrder(b->lchild);
+		InOrderRecursion(b->lchild);
 		printf("%c ",b->data);
-		InOrder(b->rchild);
+		InOrderRecursion(b->rchild);
 	}
 }
-void InOrder1( BTNode *b )	//中序遍历(非递归)
+void InOrder( BTNode *b )	//中序遍历(非递归)
 {
+	vector<ElemType> innodes;
+
 	BTNode *St[MAXSIZE],*p;
 	int top(-1);
 	if ( b!=NULL )
@@ -230,25 +237,28 @@ void InOrder1( BTNode *b )	//中序遍历(非递归)
 			}
 			if( top>-1 ){
 				p = St[top]; top--;
-				printf("%c ",p->data);
+				innodes.push_back(p->data);
 				p = p->rchild;
 			}
 		}
-		printf("\n");
+
+		PrintVector<ElemType>(innodes);
 	}
 }
 
-void PostOrder( BTNode *b ) //后序遍历(递归)
+void PostOrderRecursion(BTNode *b) //后序遍历(递归)
 {
 	if ( b!=NULL )
 	{
-		PostOrder(b->lchild);
-		PostOrder(b->rchild);
+		PostOrderRecursion(b->lchild);
+		PostOrderRecursion(b->rchild);
 		printf("%c ",b->data);
 	}
 }
-void PostOrder1( BTNode *b ) //后序遍历(非递归)
+void PostOrder( BTNode *b ) //后序遍历(非递归)
 {
+	vector<ElemType> postnodes;
+
 	BTNode *St[MAXSIZE],*p;
 	int top(-1),flag;
 	if ( b!=NULL )
@@ -266,7 +276,7 @@ void PostOrder1( BTNode *b ) //后序遍历(非递归)
 				b = St[top];
 				if ( b->rchild==p )
 				{
-					printf("%c ",b->data);
+					postnodes.push_back(b->data);
 					top--;
 					p=b;
 				}
@@ -277,17 +287,24 @@ void PostOrder1( BTNode *b ) //后序遍历(非递归)
 				}
 			}
 		} while ( top>-1 );
-		printf("\n");
+
+		PrintVector<ElemType>(postnodes);
 	}
 }
 
-void TravLevel( BTNode *b )
+//层次遍历
+void TravLevel(BTNode *root)
 {
+	vector<ElemType> levelnodes;
+
 	BTNode *Qu[MAXSIZE],*p;
 	int front,rear;
 	front = rear = 0;
-	if ( b!=NULL ) printf("%c ",b->data);
-	Qu[rear] = b;
+	if (root != NULL)
+	{
+		levelnodes.push_back(root->data);
+	}
+	Qu[rear] = root;
 	rear++;
 	while ( rear!=front )
 	{
@@ -295,24 +312,25 @@ void TravLevel( BTNode *b )
 		front = (front+1)%MAXSIZE;
 		if ( p->lchild!=NULL )
 		{
-			printf("%c ",p->lchild->data);
+			levelnodes.push_back(p->lchild->data);
 			Qu[rear] = p->lchild;
 			rear = (rear+1)%MAXSIZE;
 			if( (rear+1)%MAXSIZE==front ) return;
 		}
 		if ( p->rchild!=NULL )
 		{
-			printf("%c ",p->rchild->data);
+			levelnodes.push_back(p->rchild->data);
 			Qu[rear] = p->rchild;
 			rear = (rear+1)%MAXSIZE;
 			if( (rear+1)%MAXSIZE==front ) return;
 		}
 	}
-	printf("\n");
+
+	PrintVector<ElemType>(levelnodes);
 }
 
 //采用递归方法输出从根结点到叶子结点的路径
-void AllPath(BTNode *b, vector<ElemType> &path)
+void AllPathRecursion(BTNode *b, vector<ElemType> &path)
 {
 	if (b != NULL)
 	{
@@ -326,15 +344,15 @@ void AllPath(BTNode *b, vector<ElemType> &path)
 		else
 		{
 			path.push_back(b->data);
-			AllPath(b->lchild, path);
-			AllPath(b->rchild, path);
+			AllPathRecursion(b->lchild, path);
+			AllPathRecursion(b->rchild, path);
 			path.pop_back();	//恢复环境，此句一定要有
 		}
 	}
 }
 
 //采用非递归方法输出从根结点到叶子结点的路径
-void AllPath1( BTNode *b )
+void AllPath( BTNode *b )
 {
 	typedef struct snode
 	{
@@ -411,7 +429,7 @@ BTNode *CreateBT1( char *pre,char *in, int n )	//由先序和中序遍历序列构造二叉树
 	p->rchild = CreateBT1( pre+k+1,c+1,n-k-1 );
 	return p;
 }
-BTNode *CreateBT2( char *in,char *post, int n, int m )	//由先序和中序遍历序列构造二叉树
+BTNode *CreateBT2( char *in,char *post, int n, int m )	//由中序和后序遍历序列构造二叉树
 {
 	BTNode *p = NULL;
 	return p;

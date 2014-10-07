@@ -81,7 +81,7 @@ void DispAdj(ALGraph *G)	//输出邻接表G
 图的以邻接表为存储结构的深度优先搜索遍历算法
 visited[]为访问标志数组，当顶点vi被访问后，数组visited[i]为1，other为0
 \******************************************************/
-int visited[MAXV];
+size_t visited[MAXV];
 void DFS(ALGraph *G, size_t v)	//递归深度优先遍历
 {
 	ArcNode *p;
@@ -102,8 +102,7 @@ void DFS1(ALGraph *G, size_t v)	//非递归深度优先遍历
 {	//需要借助一个辅助的栈来实现
 	ArcNode *p;
 	stack<ArcNode*> Stk;
-	int top = -1, i;
-	for (i = 0; i<G->n; i++) visited[i] = 0;
+	for (size_t i = 0; i<G->n; i++) visited[i] = 0;
 	printf("%3d", v);
 	visited[v] = 1;
 	Stk.push(G->adjlist[v].firstarc);
@@ -127,9 +126,8 @@ void BFS(ALGraph *G, int v)
 {
 	ArcNode *p;
 	queue<int> Qu;
-	vector<int> vVis(G->n, 0);
-	int w, i;
-	for (i = 0; i<G->n; i++) vVis[i] = 0;
+	vector<size_t> vVis(G->n, 0);
+	int w;
 	printf("%2d", v);
 	vVis[v] = 1;
 	Qu.push(v);
@@ -226,7 +224,7 @@ int Cond(int path[], int d, int MustPass[], int n, int AvoidPass[], int m)
 void TravPath(ALGraph *G, int vi, int vj, int d, int path[],
 	int MustPass[], int n, int AvoidPass[], int m)
 {
-	int v, i;
+	int i;
 	ArcNode *p;
 	visited[d] = vi;
 	d++;
@@ -265,15 +263,15 @@ void Prim(MGraph g, int v)//the v is the random selected vertex
 	//lowcost[i]=0表示i在U中，closet[i]存储该边依附在U中的顶点
 	int lowcost[MAXV];
 	int min;
-	int closest[MAXV], i, j, k;
-	for (i = 0; i<g.n; i++){  //set the initialization value for lowcost[] and closet[]
+	int closest[MAXV], k;
+	for (size_t i = 0; i<g.n; i++){  //set the initialization value for lowcost[] and closet[]
 		lowcost[i] = g.edges[v][i];
 		closest[i] = v;
 	}
-	for (i = 0; i<g.n; i++) //find the n-1 vertex
+	for (size_t i = 0; i<g.n; i++) //find the n-1 vertex
 	{
 		min = INF;
-		for (j = 0; j<g.n; j++)	//find the vertex k which nearest with the U in (V-U)
+		for (size_t j = 0; j<g.n; j++)	//find the vertex k which nearest with the U in (V-U)
 		if (lowcost[j] != 0 && lowcost[j]<min)
 		{
 			min = lowcost[j];
@@ -281,7 +279,7 @@ void Prim(MGraph g, int v)//the v is the random selected vertex
 		}
 		//printf("边(%d,%d)权为：%d\n",closest[k],k,min);
 		lowcost[k] = 0; //标记k已加入U
-		for (j = 0; j<g.n; j++)	//modify array lowcost and closet
+		for (size_t j = 0; j<g.n; j++)	//modify array lowcost and closet
 		if (g.edges[k][j] != 0 && g.edges[k][j]<lowcost[j])
 		{
 			lowcost[j] = g.edges[k][j];
@@ -294,18 +292,23 @@ void SortEdge(MGraph g, Edge E[])
 {
 	int i, j, k(0);
 	Edge temp;
-	for (i = 0; i<g.n; i++)
-	for (j = 0; j<g.n; j++)
-	if (g.edges[i][j] != 0 && g.edges[i][j] != INF)
+	for (i = 0; i < g.n; i++)
 	{
-		E[k].u = i; E[k].v = j; E[k].w = g.edges[i][j];
-		k++;
+		for (j = 0; j < g.n; j++)
+		{
+			if (g.edges[i][j] != 0 && g.edges[i][j] != INF)
+			{
+				E[k].u = i; E[k].v = j; E[k].w = g.edges[i][j];
+				k++;
+			}
+		}
 	}
-	for (i = 1; i<k; i++)
+	
+	for (i = 1; i < k; i++)
 	{
 		temp = E[i];
 		j = i - 1;
-		while (j >= 0 && temp.w<E[j].w)
+		while (j >= 0 && temp.w < E[j].w)
 		{
 			E[j + 1] = E[j];
 			j--;

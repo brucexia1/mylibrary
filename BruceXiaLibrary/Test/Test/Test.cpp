@@ -213,22 +213,23 @@ TEST(StringFilterTest, Demo)
 
 TEST(TreeTest, Demo)
 {
-	BTNode *b, *p, *lp, *rp;
+	BTNode *b;
 	CreateBTNode(b, "A(B(D,E(H(J,K(L,M(,N))))),C(F,G(,I)))");
-	printf("层次遍历:");  TravLevel(b);	printf("\n");
-	printf("先序遍历:");  PreOrder1(b);		printf("\n");
-	printf("中序遍历:");  InOrder1(b);		printf("\n");
-	printf("后序遍历:");  PostOrder1(b);	printf("\n");
+	printf("层次遍历:");  TravLevel(b);
+	printf("先序遍历:");  PreOrder(b);
+	printf("中序遍历:");  InOrder(b);
+	printf("后序遍历:");  PostOrder(b);
 	printf("二叉树b的宽度:%d\n", BTWidth(b));
 	vector<ElemType> path;
 	vector<ElemType> longpath;
-	AllPath(b, path);
-	AllPath1(b);
+	AllPathRecursion(b, path);
+	AllPath(b);
 	LongPath(b, path, longpath);
 	printf("\n第一条最长路径长度：%d\n", longpath.size());
 	printf("第一条最长路径:");
 	for (int i = longpath.size() - 1; i >= 0; i--)
 		printf("%c ", longpath[i]);
+	printf("\n");
 
 	EXPECT_EQ(4, BTWidth(b));
 	EXPECT_EQ(7, longpath.size() );
@@ -237,7 +238,7 @@ TEST(TreeTest, Demo)
 TEST(DFSBFSTest, Demo)
 {
 	size_t i, j;
-	MGraph g, gl;
+	MGraph g;
 	ALGraph *G = new ALGraph;
 	int A[MAXV][6] = {
 		{ 0, 5, 0, 7, 0, 0 },
