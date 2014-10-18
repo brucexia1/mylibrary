@@ -138,7 +138,6 @@ TEST(FooDeathTest, Demo)
 }
 
 
-
 TEST(HashMapClassTest, Demo)
 {
 	std::hash_map<CString, int, CString_hash_compare> CStringHash;
@@ -165,7 +164,7 @@ TEST(DeleteSubStringTest, Demo)
 	char *str = "abcde123abcd123";
 	char *sub_str = "123";
 	char *res_str = new char[100];
-	int subnum = delete_sub_str(str, sub_str, res_str);
+	int subnum = DeleteSubStr(str, sub_str, res_str);
 
 	EXPECT_EQ(2, subnum);
 	EXPECT_STREQ("abcdeabcd", res_str);
@@ -179,19 +178,19 @@ TEST(PassLineTest, Demo)
 	float a4[10] = { 73.6, 85.5, 97.3, 63.2, 85.3, 64.4, 60.5, 70.6, 80.5, 90.3};
 	float a5[10] = { 50,50,50,50,50,30,30,40,40,50};
 
-	EXPECT_EQ(70, passLine(a1, 10) );
-	EXPECT_EQ(0, passLine(a2, 10));
-	EXPECT_EQ(10, passLine(a3, 10));
-	EXPECT_EQ(60, passLine(a4, 10));
-	EXPECT_EQ(50, passLine(a5, 10));
+	EXPECT_EQ(70, PassLine(a1, 10));
+	EXPECT_EQ(0, PassLine(a2, 10));
+	EXPECT_EQ(10, PassLine(a3, 10));
+	EXPECT_EQ(60, PassLine(a4, 10));
+	EXPECT_EQ(50, PassLine(a5, 10));
 }
 
 TEST(LineNumTest, Demo)
 {
-	EXPECT_EQ(1, lightnum(3));
-	EXPECT_EQ(2, lightnum(5));
-	EXPECT_EQ(3, lightnum(10));
-	EXPECT_EQ(10, lightnum(100));
+	EXPECT_EQ(1, Lights(3));
+	EXPECT_EQ(2, Lights(5));
+	EXPECT_EQ(3, Lights(10));
+	EXPECT_EQ(10, Lights(100));
 }
 
 TEST(StringFilterTest, Demo)
@@ -202,9 +201,9 @@ TEST(StringFilterTest, Demo)
 	char pOutputStr1[256] = { 0 };
 	char pOutputStr2[256] = { 0 };
 	char pOutputStr3[256] = { 0 };
-	stringFilter(pInputStr1, strlen(pInputStr1), pOutputStr1);
-	stringZip(pInputStr2, strlen(pInputStr2), pOutputStr2);
-	arithmetic(pInputStr3, strlen(pInputStr3), pOutputStr3);
+	StringFilter(pInputStr1, strlen(pInputStr1), pOutputStr1);
+	StringZip(pInputStr2, strlen(pInputStr2), pOutputStr2);
+	CharIntegerOperation(pInputStr3, strlen(pInputStr3), pOutputStr3);
 
 	EXPECT_STREQ("afp", pOutputStr1 );
 	EXPECT_STREQ("3cd16pde22c", pOutputStr2 );
@@ -326,8 +325,8 @@ TEST(FlyodTest, Demo)
 	//	else cout << "Input Error!" << endl;
 	//}
 
-	EXPECT_EQ(7, A[char2int("A1")][char2int("B10")] );
-	EXPECT_EQ(8, A[char2int("A1")][char2int("B12")] );
+	EXPECT_EQ(7, A[Char2Int("A1")][Char2Int("B10")]);
+	EXPECT_EQ(8, A[Char2Int("A1")][Char2Int("B12")]);
 }
 
 TEST(KruskalTest, Demo)
@@ -353,10 +352,11 @@ TEST(KruskalTest, Demo)
 	for (j = 0; j<g.n; j++)
 		g.edges[i][j] = A[i][j];
 	SortEdge(g, E);
-	printf("\n");
-	printf("图的邻接矩阵:\n");
+
+	cout << endl;
+	cout << "图的邻接矩阵:" << endl;
 	DispMat(g);
-	printf("克鲁斯卡尔算法求解结果：\n");
+	cout << "克鲁斯卡尔算法求解结果：" << endl;
 	Kruskal(E, g.n, g.e);
-	printf("\n");
+	cout<<endl;
 }

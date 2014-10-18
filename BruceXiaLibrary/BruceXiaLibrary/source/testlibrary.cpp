@@ -8,16 +8,16 @@ sub_str:需要查找并删除的特定子字符串
 [output] result_str：在str字符串中删除所有sub_str子字符串的结果
 [return] 删除的子字符串的个数
 \******************************/
-int delete_sub_str(const char *str, const char *sub_str, char *result_str)
+int DeleteSubStr(const char *str, const char *sub_str, char *result_str)
 {
-	int n = mystrlen(str);
-	int sn = mystrlen(sub_str);
+	int n = MyStrLen(str);
+	int sn = MyStrLen(sub_str);
 	int count(0);
 	bool isequal(false);
 	const char *s = str;
 	int i(0), j(0);
 	for (i = 0; i <= n - sn; ++i, ++s){
-		isequal = isequal_substr(s, sub_str, sn);
+		isequal = IsEqualSubstr(s, sub_str, sn);
 		if (isequal) {
 			++count, i += sn - 1, s += sn - 1;
 		}
@@ -34,8 +34,7 @@ int delete_sub_str(const char *str, const char *sub_str, char *result_str)
 	result_str[j] = '\0';
 	return count;
 }
-
-bool isequal_substr(const char *sub_str1, const char *sub_str2, int sub_str_len)
+bool IsEqualSubstr(const char *sub_str1, const char *sub_str2, int sub_str_len)
 {
 	for (int i = 0; i<sub_str_len; ++i, ++sub_str1, ++sub_str2)
 	{
@@ -45,7 +44,7 @@ bool isequal_substr(const char *sub_str1, const char *sub_str2, int sub_str_len)
 }
 
 //注：字符串必须以'\0'结尾的c格式的字符串
-inline int mystrlen(const char *str)
+inline int MyStrLen(const char *str)
 {
 	int i(0);
 	while (*str != '\0') {
@@ -60,10 +59,10 @@ inline int mystrlen(const char *str)
 【return】0:str1=str2 1:str1>str2  2:str2>str1
 【注】"0012"不会出现，即最高位一定不为0
 \************************************************************************/
-int maxucharnum(const char *str1, const char *str2)
+int NumStringCompare(const char *str1, const char *str2)
 {
-	int l1(mystrlen(str1));
-	int l2(mystrlen(str2));
+	int l1(MyStrLen(str1));
+	int l2(MyStrLen(str2));
 	if (l1>l2) return 1;
 	else if (l1<l2) return 2;
 	else{
@@ -82,17 +81,16 @@ int maxucharnum(const char *str1, const char *str2)
 }
 
 /*********************************************************************************\
-华为公司2014届校园招聘软件类上机考试样题
-初级题：从考试成绩中划出及格线
+从考试成绩中划出及格线
 10个学生考完期末考试评卷完成后，A老师需要划出及格线，要求如下：
 (1) 及格线是10的倍数；
 (2) 保证至少有60%的学生及格；
 (3) 如果所有的学生都高于60分，则及格线为60分
 \*********************************************************************************/
-int passLine(float score[], size_t n)
+int PassLine(float score[], size_t n)
 {
 	int pl(0);
-	mysort(score, n);
+	MySort(score, n);
 	for (size_t i = 0; i<n; ++i){
 		std::cout << score[i] << ' ';
 	}
@@ -105,7 +103,7 @@ int passLine(float score[], size_t n)
 	if (score[0]>60) pl = 60;
 	return pl;
 }
-template<typename T> void mysort(T a[], size_t n) //小数在前
+template<typename T> void MySort(T a[], size_t n) //小数在前
 {
 	size_t i, j;
 	T temp;
@@ -124,8 +122,7 @@ template<typename T> void mysort(T a[], size_t n) //小数在前
 }
 
 /*********************************************************************************\
-华为公司2014届校园招聘软件类上机考试样题
-中级题：亮着电灯的盏数
+亮着电灯的盏数
 一条长廊里依次装有n(1 ≤ n ≤ 65535)盏电灯，从头到尾编号1、2、3、…n-1、n。每盏电灯由一个拉线开关控制。开始，电灯全部关着。
 有n个学生从长廊穿过。第一个学生把号码凡是1的倍数的电灯的开关拉一下；
 接着第二个学生把号码凡是2的倍数的电灯的开关拉一下；接着第三个学生把号码凡是3的倍数的电灯的开关拉一下；
@@ -133,7 +130,7 @@ template<typename T> void mysort(T a[], size_t n) //小数在前
 注：电灯数和学生数一致。
 \*********************************************************************************/
 //返回最后有几盏亮着的灯
-int lightnum(int N)
+int Lights(int N)
 {
 	if (N<1 || N>65535) return -1;
 	bool *ln = new bool[N];
@@ -171,7 +168,7 @@ lInputLen：  输入字符串长度
 输入：“4 - 7”  输出：“-3”
 输入：“9 ++ 7”  输出：“0” 注：格式错误
 \************************************************************************/
-void arithmetic(const char *pInputStr, long lInputLen, char *pOutputStr)
+void CharIntegerOperation(const char *pInputStr, long lInputLen, char *pOutputStr)
 {
 	int i, am(0);
 	for (i = 0; i<lInputLen; i++)
@@ -255,7 +252,7 @@ lInputLen：  输入字符串长度
 输入：“afafafaf”     输出：“af”
 输入：“pppppppp”     输出：“p”
 \****************************************************************************/
-void stringFilter(const char *pInputStr, long lInputLen, char *pOutputStr)
+void StringFilter(const char *pInputStr, long lInputLen, char *pOutputStr)
 {
 	int k(0);
 	bool flag(true);
@@ -297,7 +294,7 @@ lInputLen：  输入字符串长度
 输入：“adef”     输出：“adef”
 输入：“pppppppp” 输出：“8p”
 \****************************************************************************/
-void stringZip(const char *pInputStr, long lInputLen, char *pOutputStr)
+void StringZip(const char *pInputStr, long lInputLen, char *pOutputStr)
 {
 	const char *fp, *ep;
 	int i(0), k(0);
@@ -339,7 +336,6 @@ void stringZip(const char *pInputStr, long lInputLen, char *pOutputStr)
 
 
 /*********************************************************************************\
-华为公司2014届校园招聘软件类上机考试样题
 高级题：地铁换乘
 已知2条地铁线路，其中A为环线，B为东西向线路，线路都是双向的。经过的站点名分别如下，
 两条线交叉的换乘点用T1、T2表示。编写程序，任意输入两个站点名称，
@@ -348,7 +344,7 @@ void stringZip(const char *pInputStr, long lInputLen, char *pOutputStr)
 地铁线A（直线）经过车站：B1 B2 B3 B4 B5 T1 B6 B7 B8 B9 B10 T2 B11 B12 B13 B14 B15
 \*********************************************************************************/
 //站名字符串转节点编号       
-int char2int(std::string s)
+int Char2Int(std::string s)
 {
 	std::string s1[35] = {
 		"A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10",
@@ -361,8 +357,6 @@ int char2int(std::string s)
 	}
 	return -1;
 }
-
-
 
 
 

@@ -7,21 +7,21 @@
 #include <math.h>
 #include <stdlib.h>
 
-int delete_sub_str(const char *str, const char *sub_str, char *result_str);
-bool isequal_substr(const char *sub_str1, const char *sub_str2, int sub_str_len);
-inline int mystrlen(const char *str);
+int DeleteSubStr(const char *str, const char *sub_str, char *result_str);
+bool IsEqualSubstr(const char *sub_str1, const char *sub_str2, int sub_str_len);
+inline int MyStrLen(const char *str);
 
-int maxucharnum(const char *str1, const char *str2);
+int NumStringCompare(const char *str1, const char *str2);
 
-int passLine(float score[], size_t n);
-template<typename T> void mysort(T a[], size_t n); //小数在前
+int PassLine(float score[], size_t n);
+template<typename T> void MySort(T a[], size_t n); //小数在前
 
-int lightnum(int N);
-void arithmetic(const char *pInputStr, long lInputLen, char *pOutputStr);
-void stringFilter(const char *pInputStr, long lInputLen, char *pOutputStr);
-void stringZip(const char *pInputStr, long lInputLen, char *pOutputStr);
+int Lights(int N);
+void CharIntegerOperation(const char *pInputStr, long lInputLen, char *pOutputStr);
+void StringFilter(const char *pInputStr, long lInputLen, char *pOutputStr);
+void StringZip(const char *pInputStr, long lInputLen, char *pOutputStr);
 
-int char2int(std::string s);
+int Char2Int(std::string s);
 
 
 #endif
