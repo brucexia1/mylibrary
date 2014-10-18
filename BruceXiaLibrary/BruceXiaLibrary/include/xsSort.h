@@ -27,15 +27,15 @@ void ShellSort(std::vector<T> &vec);
 template<typename T>
 void BubbleSort(std::vector<T> &vec);
 
-//快速排序的一次划分
-template<typename T>
-int Partition(std::vector<T> &vec, int bg, int ed);
-//快速排序
-template<typename T>
-void QSort(std::vector<T> &vec, int bg, int ed);
 //快速排序
 template<typename T>
 void QuickSort(std::vector<T> &vec);
+//快速排序
+template<typename T>
+void QSort(std::vector<T> &vec, int bg, int ed);
+//快速排序的一次划分
+template<typename T>
+int Partition(std::vector<T> &vec, int bg, int ed);
 
 //直接选择排序
 template<typename T>
